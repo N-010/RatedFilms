@@ -1,4 +1,3 @@
-<%@ page import="com.mysoft.Main" %>
 <%--
   Created by IntelliJ IDEA.
   User: root
@@ -8,15 +7,15 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-  <head>
+<head>
+    <link rel="stylesheet" href="CSS/style.css">
     <title>Rated films</title>
-  </head>
-  <body>
-      <header></header>
-      <div id="body">
-        <div class="rated">
-
-        </div>
-      </div>
-  </body>
+</head>
+<body>
+<header></header>
+<div id="body">
+    <div class="rated">
+    </div>
+</div>
+</body>
 </html>

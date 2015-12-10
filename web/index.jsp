@@ -16,15 +16,17 @@
 <header></header>
 <div id="body">
     <div class="rated">
-        <img width="166" height="235" src="/img/tmp.png">
+        <div class="img">
+            <img width="166" height="235" src="/img/tmp.png">
+        </div>
 
-        <p class="title">
+        <div class="title">
             Название фильма!
-        </p>
+        </div>
 
-        <p class="description">
+        <div class="description">
             Описание фильма Описание фильма Описание фильма Описание фильма Описание фильма
-        </p>
+        </div>
     </div>
 
 </div>

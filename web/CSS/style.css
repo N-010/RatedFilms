@@ -14,36 +14,32 @@ body {
 #body {
     margin-top: 2%;
     margin-bottom: 2%;
+    background: url("../img/opacity.png");
+}
+
+.rated, .rated div {
+    background: rgba(0, 0, 0, 0);
 }
 
 .rated {
-    background: rgba(0, 0, 0, 0.65);
-    padding: 1.5% 1.5% 1.5% 6%;
-    margin-bottom: 0px;
+    min-height: 260px;
 }
-.img {
-    width: 166px;
-}
-.title, .description {
-    position: relative;
-    margin-left: 200px;
-    width: 65%;
-    height: 0px;
-    bottom: 235px;
-    word-wrap: break-word;
 
+.img {
+    float: left;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.title {
+    padding-top: 7px;
+    margin-right: 10px;
 }
 
 .description {
-    margin-top: 40px;
-    height: auto;
-    background: rgba(0, 0, 0, 0.0);
-
-/*
-     top: 200px;
-     right: 300px;
-
-     width: 60%;
-     margin-bottom: 1%;
- */
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-left: 10px;
+    padding-bottom: 20px;
 }

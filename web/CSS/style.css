@@ -1,3 +1,32 @@
+* {
+    font-size: 105%;
+    color: #555454;
+    margin: 0px;
+    padding: 0px;
+    background: url("../backgroud/backgroundSite.jpg") fixed;
+}
+
 body {
-    background-image: url("../backgroud/background.jpg");
+    width: 80%;
+    height: 100px;
+    margin: auto;
+}
+
+.rated {
+    background: rgba(0, 0, 0, 0.65);
+    margin-top: 2%;
+    padding: 1.5% 1.5% 1.5% 5%;
+}
+
+.title, .description{
+    position: absolute;
+    display: inline;
+    height: 0px;
+    width: 60%;
+    margin-left: 20px;
+}
+
+.description {
+    top: 100px;
+
 }

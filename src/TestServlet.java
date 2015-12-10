@@ -7,15 +7,16 @@ import java.io.IOException;
 /**
  * Created by root on 08.12.15.
  */
-@javax.servlet.annotation.WebServlet(name = "TestServlet", urlPatterns = "/test")
+@javax.servlet.annotation.WebServlet(name = "TestServlet", urlPatterns = "/index")
 public class TestServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
-        response.getOutputStream().write(("id = " +  id).getBytes());
-        response.sendRedirect("/index");
+        //int id = Integer.parseInt(request.getParameter("id"));
+        //response.getOutputStream().write(("id = ").getBytes());
+       // response.sendRedirect("/index");
+        request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 }

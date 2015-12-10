@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: root
@@ -15,7 +16,17 @@
 <header></header>
 <div id="body">
     <div class="rated">
+        <img width="166" height="235" src="/img/tmp.png">
+
+        <p class="title">
+            Название фильма!
+        </p>
+
+        <p class="description">
+            Описание фильма Описание фильма Описание фильма Описание фильма Описание фильма
+        </p>
     </div>
+
 </div>
 </body>
 </html>

@@ -74,7 +74,7 @@ public class JsParser {
         return text;
     }
 
-    public String getDescription(Document doc, String selector) {
+    public static String getDescription(Document doc, String selector) {
         return doc.select(selector).first().text();
     }
 

@@ -1,5 +1,4 @@
 <%@ page import="com.mysoft.Main" %>
-<%@ page import="com.mysoft.FilmInformation" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
@@ -18,27 +17,20 @@
 <header></header>
 <div id="body">
 
-    <c:forEach items="<%=Main.test()%>" var="fi">
-
-
-        <!--
+    <c:forEach items="<%=Main.getListFimInformation()%>" var="filmInf">
         <div class="rated">
             <div class="img">
-                <img width="166" height="235" src="/img/tmp.png">
+                <!--<img width="166" height="235" src="/img/tmp.png">-->
+                <img width="166" height="235" src=<c:out value="${filmInf.getImg()}" />>
             </div>
             <div class="title">
-
+                <c:out value="${filmInf.getTitle()}" />
             </div>
             <div class="description">
-                Фильм рассказывает реальную историю загадочного Оскара Шиндлера, члена нацистской партии, преуспевающего
-                фабриканта, спасшего во время Второй мировой войны почти 1200 евреев.
-                Фильм рассказывает реальную историю загадочного Оскара Шиндлера, члена нацистской партии, преуспевающего
-                фабриканта, спасшего во время Второй мировой войны почти 1200 евреев.
-                Фильм рассказывает реальную историю загадочного Оскара Шиндлера, члена нацистской партии, преуспевающего
-                фабриканта, спасшего во время Второй мировой войны почти 1200 евреев.
+                <c:out value="${filmInf.getDescription()}" />
             </div>
         </div>
-        -->
+
     </c:forEach>
 
 </div>

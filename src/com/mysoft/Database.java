@@ -7,10 +7,6 @@ import java.util.Properties;
  * Created by root on 09.12.15.
  */
 public class Database {
-    private String url;
-    private String username;
-    private String password;
-    Connection connection;
 
     /*Database(String url, String username, String password) throws ClassNotFoundException, SQLException {
         this.url = url;
@@ -41,7 +37,7 @@ public class Database {
     }
 
     public static void AddValue(Connection connection, String table, String column, String value) throws SQLException {
-        String query = "INSERT INTO " + table + "(" + column + ")" + "VALUE ('" + value + "')";
+        String query = "INSERT INTO " + table + "(" + column + ")" + " VALUE (" + value + ")";
         Statement statement = connection.createStatement();
 
         statement.execute(query);

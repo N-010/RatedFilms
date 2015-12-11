@@ -23,6 +23,15 @@ public class FilmInformation {
         this.year = year;
     }
 
+    FilmInformation(String title, String description, String img) {
+        this.title = title;
+        this.description = description;
+        this.img = img;
+        this.country = null;
+        this.year = 0;
+    }
+
+
     FilmInformation() {
         this.title = null;
         this.description = null;

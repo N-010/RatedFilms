@@ -17,8 +17,27 @@ body {
     background: rgba(0, 0, 0, 0.5);
 }
 
-.rated, .rated div {
+.rated, .rated div, a {
     background: rgba(0, 0, 0, 0);
+}
+
+.search {
+
+    border-radius: 25px;
+    background: rgba(0, 0, 0, 0);
+    height: 40px;
+
+}
+
+.search input {
+    float: right;
+    border-radius: 15px;
+    background: inherit;
+
+    border: 0px;
+    background: white;
+    color: black;
+    margin-top: 10px;
 }
 
 .rated {
@@ -35,6 +54,9 @@ body {
 .title {
     padding-top: 7px;
     margin-right: 10px;
+}
+
+a {;
 }
 
 .description {

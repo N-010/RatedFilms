@@ -14,20 +14,27 @@
     <title>Rated films</title>
 </head>
 <body>
-<header></header>
+<header>
+    <div class="search">
+        <input placeholder="   Поиск">
+
+    </div>
+</header>
 <div id="body">
     <c:forEach items="<%=Main.getListFimInformation()%>" var="filmInf">
         <div class="rated">
             <div class="img">
-                <!--<img width="166" height="235" src="/img/tmp.png">-->
-                
-                <img width="166" height="235" src=<c:out value="${filmInf.getImg()}" />>
+
+                <img width="166" height="235" src=<c:out value="${filmInf.getImg()}"/>>
             </div>
             <div class="title">
-                <c:out value="${filmInf.getTitle()}" />
+                <a href="#">
+                    <c:out value="${filmInf.getTitle()}"/>
+                </a>
+
             </div>
             <div class="description">
-                <c:out value="${filmInf.getDescription()}" />
+                <c:out value="${filmInf.getDescription()}"/>
             </div>
         </div>
 

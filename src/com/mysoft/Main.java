@@ -28,7 +28,6 @@ public class Main {
         URL url1 = new URL(url);
         InputStream is = url1.openStream();
         OutputStream os = new FileOutputStream(path);
-
         byte[] bytes = new byte[2048];
         int length;
 
@@ -48,6 +47,8 @@ public class Main {
         while (resultSet.next()) {
             filmInformationList.add(new FilmInformation(resultSet.getString("title"), resultSet.getString("description"), resultSet.getString("imgURL")));
         }
+
+        connection.close();
 
         return filmInformationList;
     }
@@ -107,7 +108,6 @@ public class Main {
         //update data in database
         for (int i = 0; i < 250; i++) {
             Database.AddValue(connection, "Rated", "title, description, imgURL", "'" + titleList.get(i) + "'" + ", " + "'" + descriptionList.get(i) + "'" + ", " + "'" + imgPathList.get(i) + "'");
-            // database.UpdateValue(connection, "Rated", "description = \"" + descriptionList.get(i) + "\"", "id = " + (i + 1));
         }
 
         connection.close();

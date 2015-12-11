@@ -12,7 +12,7 @@
       <column name="title" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <column name="description" sqlType="VARCHAR" precision="2048" scale="0" nullable="true" jdbcType="12"/>
       <column name="imgURL" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
-      <column name=" year" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name=" year" sqlType="CHAR" precision="4" scale="0" nullable="true" jdbcType="1"/>
       <column name="country" sqlType="CHAR" precision="30" scale="0" nullable="true" jdbcType="1"/>
       <primary-key name="PRIMARY" columns="id"/>
     </table>

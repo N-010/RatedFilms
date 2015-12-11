@@ -8,12 +8,6 @@ import java.util.Properties;
  */
 public class Database {
 
-    /*Database(String url, String username, String password) throws ClassNotFoundException, SQLException {
-        this.url = url;
-        this.username = username;
-        this.password = password;
-    }*/
-
     public static Connection getDatabaseConnect(String url, String username, String password) throws SQLException, ClassNotFoundException {
         Properties properties = new Properties();
 

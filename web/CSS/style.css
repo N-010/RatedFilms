@@ -14,7 +14,7 @@ body {
 #body {
     margin-top: 2%;
     margin-bottom: 2%;
-    background: url("../img/opacity.png");
+    background: rgba(0, 0, 0, 0.5);
 }
 
 .rated, .rated div {

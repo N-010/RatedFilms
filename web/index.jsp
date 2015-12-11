@@ -1,3 +1,5 @@
+<%@ page import="com.mysoft.Main" %>
+<%@ page import="com.mysoft.FilmInformation" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
@@ -15,13 +17,17 @@
 <body>
 <header></header>
 <div id="body">
-    <c:forEach begin="0" end="5" step="1">
+
+    <c:forEach items="<%=Main.test()%>" var="fi">
+
+
+        <!--
         <div class="rated">
             <div class="img">
                 <img width="166" height="235" src="/img/tmp.png">
             </div>
             <div class="title">
-                Побег из Шоушенка (1994)
+
             </div>
             <div class="description">
                 Фильм рассказывает реальную историю загадочного Оскара Шиндлера, члена нацистской партии, преуспевающего
@@ -32,6 +38,7 @@
                 фабриканта, спасшего во время Второй мировой войны почти 1200 евреев.
             </div>
         </div>
+        -->
     </c:forEach>
 
 </div>

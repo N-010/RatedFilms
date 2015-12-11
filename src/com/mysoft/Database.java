@@ -1,9 +1,6 @@
 package com.mysoft;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.Properties;
 
 /**
@@ -43,8 +40,8 @@ public class Database {
             statement.close();
     }
 
-    public static void AddValue(Connection connection, String column, String value) throws SQLException {
-        String query = "INSERT INTO Rated(" + column + ")" + "VALUE ('" + value + "')";
+    public static void AddValue(Connection connection, String table, String column, String value) throws SQLException {
+        String query = "INSERT INTO " + table + "(" + column + ")" + "VALUE ('" + value + "')";
         Statement statement = connection.createStatement();
 
         statement.execute(query);
@@ -59,4 +56,9 @@ public class Database {
         statement.close();
     }
 
+    public static ResultSet getResultSet(Connection connection, String query) throws SQLException {
+        ResultSet resultSet = connection.createStatement().executeQuery(query);
+
+        return resultSet;
+    }
 }

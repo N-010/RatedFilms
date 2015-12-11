@@ -1,5 +1,8 @@
 package com.mysoft;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by root on 10.12.15.
  */
@@ -9,6 +12,8 @@ public class FilmInformation {
     public String img;
     public String country;
     public int year;
+
+    public List<FilmInformation> filmInformationList = new ArrayList<>();
 
     FilmInformation(String title, String description, String img, String country, int year) {
         this.title = title;
@@ -52,6 +57,34 @@ public class FilmInformation {
 
     public int getYear() {
         return year;
+    }
+
+    public List<FilmInformation> getFilmInformationList() {
+        return filmInformationList;
+    }
+
+    public void setFilmInformationList(List<FilmInformation> filmInformationList) {
+        this.filmInformationList = filmInformationList;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
     }
 }
 

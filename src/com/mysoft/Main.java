@@ -42,9 +42,8 @@ public class Main {
 
     public static List<FilmInformation> getListFimInformation() throws SQLException, ClassNotFoundException {
         List<FilmInformation> filmInformationList = new ArrayList<>();
-        Database database = new Database();
-        Connection connection = database.getDatabaseConnect("jdbc:mysql://localhost:3306/RatedFilms", "root", "root");
-        ResultSet resultSet = database.getResultSet(connection, "SELECT title, description, imgURL FROM Rated");
+        Connection connection = Database.getDatabaseConnect("jdbc:mysql://localhost:3306/RatedFilms", "root", "root");
+        ResultSet resultSet = Database.getResultSet(connection, "SELECT title, description, imgURL FROM Rated");
 
         while (resultSet.next()) {
             filmInformationList.add(new FilmInformation(resultSet.getString("title"), resultSet.getString("description"), resultSet.getString("imgURL")));
@@ -68,18 +67,17 @@ public class Main {
     }
 
     public static void InitialDatabase() throws SQLException, ClassNotFoundException, IOException {
-        Database database = new Database();
         Document mainPage = JsParser.getDocument(Urls.urlKinopoiskParse);
         List<String> titleList = JsParser.getListWhithTextByDocument(mainPage, "td", "a.all[href^=/film/");
         List<String> hrefList = JsParser.getListAttributeByElements(JsParser.getElements(mainPage, "td", "a.all[href^=/film/"), "href");
         List<Document> pageList = new ArrayList<>();
-        List<String> imageUrlList = new ArrayList<>();
         List<String> imgPathList = new ArrayList<>();
         List<String> descriptionList = new ArrayList<>();
         String dirImageSafe = "/home/Programming/IdeaProjects/RatedFilms/web/img/KinopoiskTop/";
+        String shortPath = "/img/KinopoiskTop/";
         String imageUrl;
         String numberImage;
-        Connection connection = database.getDatabaseConnect("jdbc:mysql://localhost:3306/RatedFilms", "root", "root");
+        Connection connection = Database.getDatabaseConnect("jdbc:mysql://localhost:3306/RatedFilms", "root", "root");
 
         //Get url's images
         hrefList.subList(250, hrefList.size()).clear();
@@ -87,16 +85,16 @@ public class Main {
             numberImage = getNumberToString(href);
             imageUrl = Urls.urlKinopoisk;
             imageUrl += "/images/film_big/" + numberImage + ".jpg";
-            imgPathList.add(new String(dirImageSafe + numberImage + ".jpg"));
             System.out.println(imageUrl);
-            DownloadImages(imageUrl, imgPathList.get(imgPathList.size() - 1));
+            DownloadImages(imageUrl, dirImageSafe + numberImage + ".jpg");
+            imgPathList.add(new String(shortPath + numberImage + ".jpg"));
         }
 
 
         //get page documents
         for (int i = 0; i < 250; i++) {
             System.out.println(i + " " + Urls.urlKinopoisk + hrefList.get(i));
-            pageList.add(JsParser.getDocument(Urls.urlKinopoisk + hrefList.get(i)));
+            pageList.add(JsParser.getDocument(Urls.urlKinopoisk + hrefList.get(i)).body().ownerDocument());
         }
 
         //get description
@@ -108,7 +106,7 @@ public class Main {
 
         //update data in database
         for (int i = 0; i < 250; i++) {
-            database.AddValue(connection, "Rated", "title, description, imgURL", "'" + titleList.get(i) + "'" + ", " + "'" + descriptionList.get(i) + "'" + ", " + "'" + imgPathList.get(i) + "'");
+            Database.AddValue(connection, "Rated", "title, description, imgURL", "'" + titleList.get(i) + "'" + ", " + "'" + descriptionList.get(i) + "'" + ", " + "'" + imgPathList.get(i) + "'");
             // database.UpdateValue(connection, "Rated", "description = \"" + descriptionList.get(i) + "\"", "id = " + (i + 1));
         }
 

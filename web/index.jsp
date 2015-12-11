@@ -16,11 +16,11 @@
 <body>
 <header></header>
 <div id="body">
-
     <c:forEach items="<%=Main.getListFimInformation()%>" var="filmInf">
         <div class="rated">
             <div class="img">
                 <!--<img width="166" height="235" src="/img/tmp.png">-->
+
                 <img width="166" height="235" src=<c:out value="${filmInf.getImg()}" />>
             </div>
             <div class="title">

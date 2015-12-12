@@ -24,13 +24,13 @@
     </div>
 </header>
 <div id="body">
-    <c:forEach items="<%=Main.getListFimInformation()%>" var="filmInf">
+    <c:forEach items="${filmList}" var="filmInf">
         <div class="rated">
             <div class="img">
                 <img width="166" height="235" src=<c:out value="${filmInf.getImg()}"/>>
             </div>
             <div class="title">
-                <a href="#">
+                <a href="/film?id=<c:out value="${filmInf.getId()}"/>"">
                     <c:out value="${filmInf.getTitle()}"/>
                 </a>
 

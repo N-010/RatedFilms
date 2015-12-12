@@ -39,13 +39,24 @@ public class Main {
         os.close();
     }
 
+    public static FilmInformation getFilmInformationById(int id) throws SQLException, ClassNotFoundException {
+        Connection connection = Database.getDatabaseConnect("jdbc:mysql://localhost:3306/RatedFilms", "root", "root");
+        ResultSet resultSet = Database.getResultSet(connection, "SELECT title, description, imgURL FROM Rated WHERE id=" + id);
+
+        while (resultSet.next())
+            return new FilmInformation(resultSet.getString("title"), resultSet.getString("description"), resultSet.getString("imgURL"), id);
+
+        return null;
+    }
+
     public static List<FilmInformation> getListFimInformation() throws SQLException, ClassNotFoundException {
+        int id = 1;
         List<FilmInformation> filmInformationList = new ArrayList<>();
         Connection connection = Database.getDatabaseConnect("jdbc:mysql://localhost:3306/RatedFilms", "root", "root");
         ResultSet resultSet = Database.getResultSet(connection, "SELECT title, description, imgURL FROM Rated");
 
         while (resultSet.next()) {
-            filmInformationList.add(new FilmInformation(resultSet.getString("title"), resultSet.getString("description"), resultSet.getString("imgURL")));
+            filmInformationList.add(new FilmInformation(resultSet.getString("title"), resultSet.getString("description"), resultSet.getString("imgURL"), id++));
         }
 
         connection.close();
@@ -115,8 +126,7 @@ public class Main {
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException, IOException {
         // DownloadImages("http://www.kinopoisk.ru/images/film_big/8221.jpg", "/home/Programming/IdeaProjects/RatedFilms/web/img/Films img/8221.jpg");
-
-        InitialDatabase();
+        // InitialDatabase();
     }
 
 }

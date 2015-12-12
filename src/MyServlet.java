@@ -21,5 +21,7 @@ public class MyServlet extends javax.servlet.http.HttpServlet {
             e.printStackTrace();
         }
         request.getRequestDispatcher("WEB-INF/posts.jsp").forward(request, response);
+
+
     }
 }

@@ -7,13 +7,13 @@ import java.util.List;
  * Created by root on 10.12.15.
  */
 public class FilmInformation {
-    public String title;
-    public String description;
-    public String img;
-    public String country;
-    public int year;
+    private String title;//TODO: make fields private.
+    private String description;
+    private String img;
+    private String country;
+    private int year;
 
-    public List<FilmInformation> filmInformationList = new ArrayList<>();
+    private List<FilmInformation> filmInformationList = new ArrayList<>();
 
     FilmInformation(String title, String description, String img, String country, int year) {
         this.title = title;

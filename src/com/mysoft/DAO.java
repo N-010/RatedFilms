@@ -16,7 +16,6 @@ public class DAO {
 
     public static List<Post> posts;
 
-
     public static List<Post> getPosts() throws SQLException, ClassNotFoundException {
         Connection c = getConnection();
         PreparedStatement ps = c.prepareStatement("SELECT id, txt from posts");

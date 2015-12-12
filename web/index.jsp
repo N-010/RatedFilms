@@ -15,16 +15,18 @@
 </head>
 <body>
 <header>
-    <div class="search">
-        <input placeholder="   Поиск">
-
+    <div id="search">
+        <!--    <form>
+                <input placeholder="   Поиск" type="text">
+                <button>Найти</button>
+            </form>
+            -->
     </div>
 </header>
 <div id="body">
     <c:forEach items="<%=Main.getListFimInformation()%>" var="filmInf">
         <div class="rated">
             <div class="img">
-
                 <img width="166" height="235" src=<c:out value="${filmInf.getImg()}"/>>
             </div>
             <div class="title">

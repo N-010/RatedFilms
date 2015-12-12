@@ -7,6 +7,17 @@ import java.util.Properties;
  * Created by root on 09.12.15.
  */
 public class Database {
+    private Database() {
+    }
+
+    private static Database instance;
+
+    public static Database getInstance() {
+        if (instance == null)
+            instance = new Database();
+
+        return instance;
+    }
 
     public static Connection getDatabaseConnect(String url, String username, String password) throws SQLException, ClassNotFoundException {
         Properties properties = new Properties();

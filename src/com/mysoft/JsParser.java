@@ -13,6 +13,19 @@ import java.util.List;
  * Created by root on 08.12.15.
  */
 public class JsParser {
+    public static JsParser instance;
+
+    private JsParser() {
+
+    }
+
+    public JsParser getInstance(){
+        if(instance == null)
+            instance = new JsParser();
+
+        return instance;
+    }
+
 
     public static Document getDocument(String url) {
         Document document = null;
@@ -54,21 +67,19 @@ public class JsParser {
         return document.select(selector1).select(selector2);
     }
 
-    public static List<String> getListTextByElements(Elements elements)
-    {
+    public static List<String> getListTextByElements(Elements elements) {
         List<String> text = new ArrayList<>();
 
-        for(Element element: elements)
+        for (Element element : elements)
             text.add(element.text());
 
         return text;
     }
 
-    public static List<String> getListAttributeByElements(Elements elements, String attribute)
-    {
+    public static List<String> getListAttributeByElements(Elements elements, String attribute) {
         List<String> text = new ArrayList<>();
 
-        for(Element element: elements)
+        for (Element element : elements)
             text.add(element.attr(attribute));
 
         return text;

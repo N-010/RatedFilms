@@ -80,7 +80,8 @@ public class Main {
 
     public static void InitialDatabase() throws SQLException, ClassNotFoundException, IOException {
         Document mainPage = JsParser.getDocument(Urls.urlKinopoiskParse);
-        List<String> titleList = JsParser.getListWhithTextByDocument(mainPage, "td", "a.all[href^=/film/");
+        List<String> titleList = new ArrayList<>(); //= JsParser.getListWithTextByDocument(mainPage, "td", "a.all[href^=/film/");
+        List<Integer> yearsList = new ArrayList<>();
         List<String> hrefList = JsParser.getListAttributeByElements(JsParser.getElements(mainPage, "td", "a.all[href^=/film/"), "href");
         List<Document> pageList = new ArrayList<>();
         List<String> imgPathList = new ArrayList<>();
@@ -98,7 +99,7 @@ public class Main {
             imageUrl = Urls.urlKinopoisk;
             imageUrl += "/images/film_big/" + numberImage + ".jpg";
             System.out.println(imageUrl);
-            DownloadImages(imageUrl, dirImageSafe + numberImage + ".jpg");
+            //DownloadImages(imageUrl, dirImageSafe + numberImage + ".jpg");
             imgPathList.add(new String(shortPath + numberImage + ".jpg"));
         }
 
@@ -107,6 +108,12 @@ public class Main {
         for (int i = 0; i < 250; i++) {
             System.out.println(i + " " + Urls.urlKinopoisk + hrefList.get(i));
             pageList.add(JsParser.getDocument(Urls.urlKinopoisk + hrefList.get(i)).body().ownerDocument());
+        }
+
+        //get titles and years
+        for (int i = 0; i < 250; i++) {
+            titleList.add(JsParser.getTextByDocument(pageList.get(i), "#headerFilm .moviename-big"));
+            yearsList.add(Integer.parseInt(JsParser.getTextByDocument(pageList.get(i), "table.info a")));
         }
 
         //get description
@@ -118,15 +125,41 @@ public class Main {
 
         //update data in database
         for (int i = 0; i < 250; i++) {
-            Database.AddValue(connection, "Rated", "title, description, imgURL", "'" + titleList.get(i) + "'" + ", " + "'" + descriptionList.get(i) + "'" + ", " + "'" + imgPathList.get(i) + "'");
+            Database.AddValue(connection, "Rated", "title, description, imgURL, year", "'" + titleList.get(i) + "', '" + descriptionList.get(i) + "', '"  + imgPathList.get(i) + "', '" + yearsList.get(i).toString() +"'");
         }
 
         connection.close();
     }
 
+    public static int getNumberLinesDatabase() throws SQLException, ClassNotFoundException {
+        Connection connection = Database.getDatabaseConnect("jdbc:mysql://localhost:3306/RatedFilms", "root", "root");
+        int numberLines = 0;
+
+        ResultSet resultSet = Database.getResultSet(connection, "SELECT COUNT(*) FROM Rated");
+
+        while (resultSet.next())
+            numberLines = resultSet.getInt(1);
+
+        return numberLines;
+
+    }
+
+    public static List<FilmInformation> getListFilmsByTitle(String title) throws SQLException, ClassNotFoundException {
+        Connection connection = Database.getDatabaseConnect("jdbc:mysql://localhost:3306/RatedFilms", "root", "root");
+        ResultSet resultSet = Database.getResultSet(connection, "SELECT * FROM Rated WHERE title like '%" + title + "%'");
+        List<FilmInformation> filmInformationList = new ArrayList<>();
+
+        while (resultSet.next())
+            filmInformationList.add(new FilmInformation(resultSet.getString("title"), resultSet.getString("description"), resultSet.getString("imgURL"), resultSet.getInt("id"), Integer.parseInt(resultSet.getString("year"))));
+
+        return filmInformationList;
+    }
+
+
     public static void main(String[] args) throws SQLException, ClassNotFoundException, IOException {
         // DownloadImages("http://www.kinopoisk.ru/images/film_big/8221.jpg", "/home/Programming/IdeaProjects/RatedFilms/web/img/Films img/8221.jpg");
-        // InitialDatabase();
+       // InitialDatabase();
+
     }
 
 }

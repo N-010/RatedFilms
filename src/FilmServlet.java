@@ -18,22 +18,21 @@ public class FilmServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int id = 0;
+        int id;
         try {
             id = Integer.parseInt(request.getParameter("id"));
-
-            if (id > 250)
-                throw new NumberFormatException("id > 250");
-
-        } catch (NumberFormatException e) {
-            System.out.println(e.toString());
+            if (id > Main.getNumberLinesDatabase()) {
+                response.sendRedirect("");
+                return;
+            }
+        } catch (ClassNotFoundException | SQLException | NumberFormatException e) {
             response.sendRedirect("/");
+            return;
         }
+
         try {
             request.setAttribute("filmInf", Main.getFilmInformationById(id));
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
         try {
@@ -41,17 +40,5 @@ public class FilmServlet extends HttpServlet {
         } catch (Throwable e) {
             response.sendRedirect("/");
         }
-
-
-
-      /*  try {
-            request.setAttribute("filmInf", Main.getFilmInformationById(id));
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        request.getRequestDispatcher("/WEB-INF/film.jsp").forward(request, response);*/
     }
 }

@@ -11,7 +11,15 @@ public class FilmInformation {
     private int year;
     private int id;
 
-    FilmInformation(String title, String description, String img, String country, int year) {
+    public FilmInformation(String title, String description, String img, int id, int year) {
+        this.title = title;
+        this.description = description;
+        this.img = img;
+        this.year = year;
+        this.id = id;
+    }
+
+    public FilmInformation(String title, String description, String img, String country, int year) {
         this.title = title;
         this.description = description;
         this.img = img;
@@ -19,23 +27,13 @@ public class FilmInformation {
         this.year = year;
     }
 
-    FilmInformation(String title, String description, String img, int id) {
+    public FilmInformation(String title, String description, String img, int id) {
         this.title = title;
         this.description = description;
         this.img = img;
         this.country = null;
         this.year = 0;
         this.id = id;
-    }
-
-
-    FilmInformation() {
-        this.title = null;
-        this.description = null;
-        this.img = null;
-        this.country = null;
-        this.year = 0;
-        this.id = 0;
     }
 
     public String getTitle() {

@@ -13,7 +13,7 @@ import static com.mysoft.Main.getListFimInformation;
 @javax.servlet.annotation.WebServlet(name = "IndexServlet", urlPatterns = "")
 public class IndexServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        response.setCharacterEncoding("UTF-8");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

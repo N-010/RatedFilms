@@ -27,6 +27,20 @@ public class JsParser {
     }
 
 
+    public static String getTextByDocument(Document doc, String selector) {
+        Elements elements = doc.select(selector);
+        Element element = elements.get(0);
+
+        return element.text();
+    }
+
+    public static String getTextByDocument(Document doc, String selector1, String selector2) {
+        Elements elements = doc.select(selector1).select(selector2);
+        Element element = elements.get(0);
+
+        return element.text();
+    }
+
     public static Document getDocument(String url) {
         Document document = null;
 
@@ -39,7 +53,7 @@ public class JsParser {
         return document;
     }
 
-    public static List<String> getListWhithTextByDocument(Document doc, String selector1, String selector2) {
+    public static List<String> getListWithTextByDocument(Document doc, String selector1, String selector2) {
         List<String> text = new ArrayList<>();
         Elements elements = doc.select(selector1).select(selector2);
 
@@ -49,7 +63,7 @@ public class JsParser {
         return text;
     }
 
-    public static List<String> getListWhithTextByDocument(Document doc, String selector) {
+    public static List<String> getListWithTextByDocument(Document doc, String selector) {
         List<String> text = new ArrayList<>();
         Elements elements = doc.select(selector);
 

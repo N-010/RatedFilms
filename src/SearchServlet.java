@@ -25,7 +25,6 @@ public class SearchServlet extends HttpServlet {
             return;
         }
 
-
         try {
             List<FilmInformation> filmInformationList = Main.getListFilmsByTitle(title);
 

@@ -41,10 +41,10 @@ public class Main {
 
     public static FilmInformation getFilmInformationById(int id) throws SQLException, ClassNotFoundException {
         Connection connection = Database.getDatabaseConnect("jdbc:mysql://localhost:3306/RatedFilms", "root", "root");
-        ResultSet resultSet = Database.getResultSet(connection, "SELECT title, description, imgURL FROM Rated WHERE id=" + id);
+        ResultSet resultSet = Database.getResultSet(connection, "SELECT * FROM Rated WHERE id=" + id);
 
         while (resultSet.next())
-            return new FilmInformation(resultSet.getString("title"), resultSet.getString("description"), resultSet.getString("imgURL"), id);
+            return new FilmInformation(resultSet.getString("title"), resultSet.getString("description"), resultSet.getString("imgURL"), resultSet.getString("country"), resultSet.getString("producer"), Integer.parseInt(resultSet.getString("year")), resultSet.getInt("id"));
 
         return null;
     }
@@ -53,10 +53,10 @@ public class Main {
         int id = 1;
         List<FilmInformation> filmInformationList = new ArrayList<>();
         Connection connection = Database.getDatabaseConnect("jdbc:mysql://localhost:3306/RatedFilms", "root", "root");
-        ResultSet resultSet = Database.getResultSet(connection, "SELECT title, description, imgURL FROM Rated");
+        ResultSet resultSet = Database.getResultSet(connection, "SELECT * FROM Rated");
 
         while (resultSet.next()) {
-            filmInformationList.add(new FilmInformation(resultSet.getString("title"), resultSet.getString("description"), resultSet.getString("imgURL"), id++));
+            filmInformationList.add(new FilmInformation(resultSet.getString("title"), resultSet.getString("description"), resultSet.getString("imgURL"), resultSet.getString("country"), resultSet.getString("producer"), Integer.parseInt(resultSet.getString("year")), resultSet.getInt("id")));
         }
 
         connection.close();
@@ -80,12 +80,21 @@ public class Main {
 
     public static void InitialDatabase() throws SQLException, ClassNotFoundException, IOException {
         Document mainPage = JsParser.getDocument(Urls.urlKinopoiskParse);
+        Document page;
         List<String> titleList = new ArrayList<>(); //= JsParser.getListWithTextByDocument(mainPage, "td", "a.all[href^=/film/");
         List<Integer> yearsList = new ArrayList<>();
         List<String> hrefList = JsParser.getListAttributeByElements(JsParser.getElements(mainPage, "td", "a.all[href^=/film/"), "href");
         List<Document> pageList = new ArrayList<>();
         List<String> imgPathList = new ArrayList<>();
         List<String> descriptionList = new ArrayList<>();
+        List<String> producerList = new ArrayList<>();
+
+        String title;
+
+        int year;
+        String producer;
+        String description;
+
         String dirImageSafe = "/home/Programming/IdeaProjects/RatedFilms/web/img/KinopoiskTop/";
         String shortPath = "/img/KinopoiskTop/";
         String imageUrl;
@@ -108,24 +117,9 @@ public class Main {
         for (int i = 0; i < 250; i++) {
             System.out.println(i + " " + Urls.urlKinopoisk + hrefList.get(i));
             pageList.add(JsParser.getDocument(Urls.urlKinopoisk + hrefList.get(i)).body().ownerDocument());
-        }
+            page = pageList.get(i);
 
-        //get titles and years
-        for (int i = 0; i < 250; i++) {
-            titleList.add(JsParser.getTextByDocument(pageList.get(i), "#headerFilm .moviename-big"));
-            yearsList.add(Integer.parseInt(JsParser.getTextByDocument(pageList.get(i), "table.info a")));
-        }
-
-        //get description
-        for (int i = 0; i < 250; i++) {
-            descriptionList.add(JsParser.getElements(pageList.get(i), "div.brand_words[itemprop=description]").first().text());
-
-        }
-        //System.out.println(titleList.get(0), descriptionList);
-
-        //update data in database
-        for (int i = 0; i < 250; i++) {
-            Database.AddValue(connection, "Rated", "title, description, imgURL, year", "'" + titleList.get(i) + "', '" + descriptionList.get(i) + "', '"  + imgPathList.get(i) + "', '" + yearsList.get(i).toString() +"'");
+            Database.AddValue(connection, "Rated", "title, description, imgURL, year, producer", "'" + JsParser.getTextByDocument(page, "#headerFilm .moviename-big") + "', '" + JsParser.getElements(page, "div.brand_words[itemprop=description]").first().text() + "', '" + imgPathList.get(i) + "', '" + Integer.parseInt(JsParser.getTextByDocument(page, "table.info a")) + "', '" + JsParser.getTextByDocument(page, "[itemprop=director]") + "'");
         }
 
         connection.close();
@@ -150,7 +144,7 @@ public class Main {
         List<FilmInformation> filmInformationList = new ArrayList<>();
 
         while (resultSet.next())
-            filmInformationList.add(new FilmInformation(resultSet.getString("title"), resultSet.getString("description"), resultSet.getString("imgURL"), resultSet.getInt("id"), Integer.parseInt(resultSet.getString("year"))));
+            filmInformationList.add(new FilmInformation(resultSet.getString("title"), resultSet.getString("description"), resultSet.getString("imgURL"), resultSet.getString("country"), resultSet.getString("producer"), Integer.parseInt(resultSet.getString("year")), resultSet.getInt("id")));
 
         return filmInformationList;
     }
@@ -158,7 +152,11 @@ public class Main {
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException, IOException {
         // DownloadImages("http://www.kinopoisk.ru/images/film_big/8221.jpg", "/home/Programming/IdeaProjects/RatedFilms/web/img/Films img/8221.jpg");
-       // InitialDatabase();
+        //InitialDatabase();
+
+        Zerx zerx = new Zerx();
+
+        System.out.println(zerx.getPlayerCode("ну погоди", "блабла"));
 
     }
 

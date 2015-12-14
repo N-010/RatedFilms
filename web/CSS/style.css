@@ -39,7 +39,7 @@ body {
     border: 0px;
     padding-left: 10px;
     background: rgba(60, 63, 65, 0.4);
-    color: wheat;
+    color: #dddddd;
 }
 
 #search input:focus {
@@ -58,7 +58,7 @@ body {
     font-weight: bold;
     line-height: 40px;
     background: rgba(60, 63, 65, 0.57);
-    color: wheat;
+    color: #dddddd;
     border-radius: 0 10px 10px 0;
     margin-right: 10px;
 }

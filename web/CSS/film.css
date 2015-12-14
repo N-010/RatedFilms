@@ -35,7 +35,7 @@ body {
 
 .player {
     margin: 20px auto auto auto;
-    background: black;
+    background: rgba(0, 0, 0, 0);
     width: 80%;
     height: 480px;
     color: white;

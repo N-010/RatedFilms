@@ -20,7 +20,7 @@
         ${filmInf.getDescription()}
     </div>
     <div class="player">
-        Тут будет плеер с видео
+        ${codePlayer}
     </div>
 </div>
 

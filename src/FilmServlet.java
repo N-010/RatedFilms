@@ -1,4 +1,6 @@
+import com.mysoft.FilmInformation;
 import com.mysoft.Main;
+import com.mysoft.Zerx;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,7 +21,11 @@ public class FilmServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id;
+        Zerx zerx;
+        FilmInformation filmInformation;
+
         try {
+            zerx = new Zerx();
             id = Integer.parseInt(request.getParameter("id"));
             if (id > Main.getNumberLinesDatabase()) {
                 response.sendRedirect("");
@@ -31,7 +37,15 @@ public class FilmServlet extends HttpServlet {
         }
 
         try {
-            request.setAttribute("filmInf", Main.getFilmInformationById(id));
+            String codePlayer;
+            filmInformation = Main.getFilmInformationById(id);
+            codePlayer = zerx.getPlayerCode(filmInformation.getTitle(), filmInformation.getProducer());
+            request.setAttribute("filmInf", filmInformation);
+            if (codePlayer == null)
+                codePlayer = "";
+
+            request.setAttribute("codePlayer", codePlayer);
+
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }

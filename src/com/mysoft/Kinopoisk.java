@@ -85,7 +85,7 @@ public class Kinopoisk extends Urls {
         String title;
         String producer;
         String codePlayer;
-        Zerx zerx = new Zerx();
+        Zerx zerx = Zerx.getInstance();
         Connection connection = Database.getDatabaseConnect("jdbc:mysql://localhost:3306/RatedFilms", "root", "root");
 
         hrefList.subList(250, hrefList.size()).clear();

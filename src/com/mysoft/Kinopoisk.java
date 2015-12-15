@@ -98,7 +98,7 @@ public class Kinopoisk extends Urls {
             imgPathList.add(new String(shortPath + numberImage + ".jpg"));
         }
 
-       /* for (int i = 0; i < 250; i++) {
+       for (int i = 0; i < 250; i++) {
             System.out.println(i + " " + Urls.urlKinopoisk + hrefList.get(i));
             pageList.add(JsParser.getDocument(Urls.urlKinopoisk + hrefList.get(i)).body().ownerDocument());
             page = pageList.get(i);
@@ -111,7 +111,7 @@ public class Kinopoisk extends Urls {
             }
 
             Database.addValue(connection, "Rated", "title, description, imgURL, year, producer, codePlayer", "'" + title + "', '" + JsParser.getElements(page, "div.brand_words[itemprop=description]").first().text() + "', '" + imgPathList.get(i) + "', '" + Integer.parseInt(JsParser.getTextByDocument(page, "table.info a")) + "', '" + producer + "', '" + codePlayer + "'");
-        }*/
+        }
 
         connection.close();
     }

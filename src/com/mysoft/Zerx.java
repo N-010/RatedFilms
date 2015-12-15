@@ -8,6 +8,17 @@ import org.jsoup.select.Elements;
  * Created by root on 14.12.15.
  */
 public class Zerx extends Urls {
+    private static Zerx instance;
+
+    private Zerx() {
+    }
+
+    public static Zerx getInstance() {
+        if (instance == null)
+            instance = new Zerx();
+        return instance;
+    }
+
     public String getPlayerCode(String titleFilm, String producer) {
         Document document = JsParser.getDocument(urlZerxSearch + titleFilm);
         String strProducer;

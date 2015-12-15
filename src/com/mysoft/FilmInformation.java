@@ -9,10 +9,11 @@ public class FilmInformation {
     private String img;
     private String country;
     private String producer;
+    private String codePlayer;
     private int year;
     private int id;
 
-    public FilmInformation(String title, String description, String img, String country, String producer, int year, int id) {
+    public FilmInformation(String title, String description, String img, String country, String producer, int year, int id, String codePlayer) {
         this.title = title;
         this.description = description;
         this.img = img;
@@ -20,26 +21,7 @@ public class FilmInformation {
         this.producer = producer;
         this.year = year;
         this.id = id;
-    }
-
-    public FilmInformation(String title, String description, String img, String country, int year) {
-        this.title = title;
-        this.description = description;
-        this.img = img;
-        this.country = country;
-        this.year = year;
-    }
-
-    public FilmInformation(String title, String description, String img, int id) {
-        this.title = title;
-        this.description = description;
-        this.img = img;
-        this.country = null;
-        this.year = 0;
-        this.id = id;
-    }
-
-    public FilmInformation() {
+        this.codePlayer = codePlayer;
     }
 
     public String getTitle() {
@@ -96,6 +78,14 @@ public class FilmInformation {
 
     public void setProducer(String producer) {
         this.producer = producer;
+    }
+
+    public String getCodePlayer() {
+        return codePlayer;
+    }
+
+    public void setCodePlayer(String codePlayer) {
+        this.codePlayer = codePlayer;
     }
 }
 

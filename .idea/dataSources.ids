@@ -15,6 +15,7 @@
       <column name="year" sqlType="CHAR" precision="5" scale="0" nullable="true" jdbcType="1"/>
       <column name="country" sqlType="CHAR" precision="30" scale="0" nullable="true" jdbcType="1"/>
       <column name="producer" sqlType="CHAR" precision="255" scale="0" nullable="true" jdbcType="1"/>
+      <column name="codePlayer" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
       <primary-key name="PRIMARY" columns="id"/>
     </table>
   </data-source>

@@ -13,20 +13,6 @@ import java.util.List;
  * Created by root on 08.12.15.
  */
 public class JsParser {
-    public static JsParser instance;
-
-    private JsParser() {
-
-    }
-
-    public JsParser getInstance(){
-        if(instance == null)
-            instance = new JsParser();
-
-        return instance;
-    }
-
-
     public static String getTextByDocument(Document doc, String selector) {
         Elements elements = doc.select(selector);
         Element element = elements.get(0);

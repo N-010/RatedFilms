@@ -29,7 +29,7 @@ public class Database {
             statement.close();
     }
 
-    public static void AddValue(Connection connection, String table, String column, String value) throws SQLException {
+    public static void addValue(Connection connection, String table, String column, String value) throws SQLException {
         String query = "INSERT INTO " + table + "(" + column + ")" + " VALUE (" + value + ")";
         Statement statement = connection.createStatement();
 
@@ -50,4 +50,17 @@ public class Database {
 
         return resultSet;
     }
+
+    public static int getNumberLinesDatabase() throws SQLException, ClassNotFoundException {
+        Connection connection = Database.getDatabaseConnect("jdbc:mysql://localhost:3306/RatedFilms", "root", "root");
+        int numberLines = 0;
+
+        ResultSet resultSet = Database.getResultSet(connection, "SELECT COUNT(*) FROM Rated");
+
+        while (resultSet.next())
+            numberLines = resultSet.getInt(1);
+
+        return numberLines;
+    }
+
 }

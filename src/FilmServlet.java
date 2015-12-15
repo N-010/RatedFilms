@@ -1,6 +1,6 @@
+import com.mysoft.Database;
 import com.mysoft.FilmInformation;
-import com.mysoft.Main;
-import com.mysoft.Zerx;
+import com.mysoft.Kinopoisk;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,25 +21,27 @@ public class FilmServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id;
-        Zerx zerx;
         FilmInformation filmInformation;
 
+
         try {
-            zerx = new Zerx();
             id = Integer.parseInt(request.getParameter("id"));
-            if (id > Main.getNumberLinesDatabase()) {
+            if (id > Database.getNumberLinesDatabase()) {
                 response.sendRedirect("");
+
                 return;
             }
-        } catch (ClassNotFoundException | SQLException | NumberFormatException e) {
+        } catch (ClassNotFoundException | NumberFormatException | SQLException e) {
             response.sendRedirect("/");
+
             return;
         }
 
+
         try {
             String codePlayer;
-            filmInformation = Main.getFilmInformationById(id);
-            codePlayer = zerx.getPlayerCode(filmInformation.getTitle(), filmInformation.getProducer());
+            filmInformation = Kinopoisk.getFilmInformationById(id);
+            codePlayer = filmInformation.getCodePlayer();
             request.setAttribute("filmInf", filmInformation);
             if (codePlayer == null)
                 codePlayer = "";

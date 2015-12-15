@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
-import static com.mysoft.Main.getListFimInformation;
+import static com.mysoft.Kinopoisk.getListFimInformation;
 
 /**
  * Created by root on 08.12.15.

@@ -1,5 +1,5 @@
 import com.mysoft.FilmInformation;
-import com.mysoft.Main;
+import com.mysoft.Kinopoisk;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,7 +26,7 @@ public class SearchServlet extends HttpServlet {
         }
 
         try {
-            List<FilmInformation> filmInformationList = Main.getListFilmsByTitle(title);
+            List<FilmInformation> filmInformationList = Kinopoisk.getListFilmsByTitle(title);
 
             if (filmInformationList.size() == 0) {
                 response.sendRedirect("");

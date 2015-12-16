@@ -23,7 +23,6 @@ public class FilmServlet extends HttpServlet {
         int id;
         FilmInformation filmInformation;
 
-
         try {
             id = Integer.parseInt(request.getParameter("id"));
             if (id > Database.getNumberLinesDatabase()) {
@@ -36,7 +35,6 @@ public class FilmServlet extends HttpServlet {
 
             return;
         }
-
 
         try {
             String codePlayer;

@@ -9,9 +9,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 
 <html>
-
 <head>
     <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="CSS/search.css">
     <title>Rated films</title>
 </head>
 <body>

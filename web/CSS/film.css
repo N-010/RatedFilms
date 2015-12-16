@@ -1,14 +1,14 @@
 * {
     font-size: 105%;
     color: #555454;
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
     background: url("../backgroud/backgroundSite.jpg") fixed;
 }
 
 body {
     width: 80%;
-    margin: auto;
+    margin: 2% auto auto;
 }
 
 #body {
